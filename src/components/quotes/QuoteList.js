@@ -27,7 +27,17 @@ const QuoteList = (props) => {
   const sortedQuotes = sortQuotes(props.quotes, isSortingAscending);
 
   const changeSortingHandler = () => {
-    history.push("/quotes?sort=" + (isSortingAscending ? "desc" : "asc"));
+    // history.push("/quotes?sort=" + (isSortingAscending ? "desc" : "asc"));
+    // You can do it with useRouteMatch or useLocation. I choose useLocation here.
+    // history.push(
+    //   `${location.pathname}?sort=${isSortingAscending ? "desc" : "asc"}`
+    // );
+    // The up code works great, but let's make it more readable and smaller
+    // And it is better if you have more complex URLs you wanna navigate to.
+    history.push({
+      pathname: location.pathname,
+      search: `?sort=${isSortingAscending ? "desc" : "asc"}`,
+    });
   };
 
   return (
